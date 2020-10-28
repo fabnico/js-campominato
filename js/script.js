@@ -1,5 +1,5 @@
 var MAX_TRY = 3;
-var WIN_COUNTER = -1;
+var WIN_COUNTER = 0;
 var game = document.getElementById('gameHTML');
 var result = document.getElementById('resultHTML');
 var gameState = false
@@ -23,8 +23,13 @@ for (var i = 1; i <= MAX_TRY; i++){
    for (var j = 0; j < pcNumList.length; j++){
       if(pcNumList[j] == userNumber){
          i = MAX_TRY;
+         WIN_COUNTER--
          var gameState = true
       }
+      if(i == MAX_TRY){
+         var gameState = true
+      }
+
    }
 }
 
