@@ -1,4 +1,3 @@
-var MAX_TRY = 2
 var WIN_COUNTER = 0
 var MIN_NUM = 1
 var MAX_NUM = 100
@@ -15,10 +14,6 @@ function randomNum(min, max){
    return Math.floor(Math.random() * (max - min +1) + min )
 }
 
-function addList(number, array){
-   return array.push(number)
-}
-
 var level = parseInt(prompt('Scegli la difficoltà: 1 - 2 - 3'))
 switch (level){
    case 1:
@@ -32,12 +27,18 @@ switch (level){
       break
    }
 
+var MAX_TRY = MAX_NUM - 16
+
+console.log(MAX_NUM)
+console.log(MAX_TRY)
+
 while(pcNumList.length < 16){ // Aggiunge i numeri random non doppioni ad un array
    var r = randomNum(MIN_NUM,MAX_NUM)
    if (!pcNumList.includes(r)){
       pcNumList.push(r)
    }
 }
+
 console.log(pcNumList);
 
 for (var i = 1; i <= MAX_TRY; i++){
@@ -48,18 +49,18 @@ for (var i = 1; i <= MAX_TRY; i++){
       i--
       WIN_COUNTER--
    }else{
-      addList(userNumber, userNumberList)
+      userNumberList.push(userNumber)
    }
+   
    console.log(userNumberList)
-   for (var j = 0; j < pcNumList.length; j++){
-      if(pcNumList[j] == userNumber){
-         i = MAX_TRY
-         WIN_COUNTER--
-         var gameStatus = true
-      }
-      if(i == MAX_TRY){
-         var victory = true
-      }
+
+   if(pcNumList.includes(userNumber)){
+      i = MAX_TRY
+      WIN_COUNTER--
+      var gameStatus = true
+   }
+   if(i == MAX_TRY){
+      var victory = true
    }
 }
 
